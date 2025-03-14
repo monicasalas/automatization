@@ -1,7 +1,7 @@
 # Import packages necessarily
-
 import pandas as pd
 import warnings
+
 pd.options.display.date_dayfirst = True
 
 class ExcelProcessor:
@@ -9,6 +9,7 @@ class ExcelProcessor:
         self.file_path = file_path
         self.skip_rows = skip_rows
         self.sheets = {}
+        
 
     def read_file(self):
         warnings.simplefilter(action='ignore', category=UserWarning)
@@ -36,7 +37,14 @@ class ExcelProcessor:
         else:
             print("Error: No se ha cargado ningún dataframe para imprimir")
 
-   # """
+    def get_data(self):
+        #Devuelve el dataframe
+        if self.sheets is None:
+            print("Error: No se pudo cargar el DataFrame")
+            return None
+        return self.sheets
+
+"""
     def export_dataframe(self, output_path):
         try: 
             with pd.ExcelWriter(output_path, engine='xlsxwriter') as writer:
@@ -70,5 +78,5 @@ class ExcelProcessor:
         except Exception as e:
             print(f"Error al exportar el archivo: {e}")
     
-    #"""
+"""
    
